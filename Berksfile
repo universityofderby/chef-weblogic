@@ -1,4 +1,4 @@
-source 'http://berks-api.derby.ac.uk'
+source 'http://supermarket.getchef.io'
 
 metadata
 cookbook 'weblogic-server-10_3_6', path: 'test/fixtures/cookbooks/weblogic-server/10-3-6'
