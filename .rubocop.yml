@@ -1,0 +1,11 @@
+AllCops:
+  Exclude:
+    - .kitchen/**/*
+    - Guardfile
+    - metadata.rb 
+Encoding:
+  Enabled: false
+LineLength:
+  Enabled: false
+RescueModifier:
+  Enabled: false
