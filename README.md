@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/universityofderby/chef-weblogic.png?label=ready&title=Ready)](https://waffle.io/universityofderby/chef-weblogic)
 # Weblogic Cookbook
 
 ## Scope
