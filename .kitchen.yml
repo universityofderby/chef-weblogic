@@ -1,4 +1,3 @@
----
 driver:
   name: vagrant
   driver-config:
@@ -16,17 +15,17 @@ suites:
           common_artifact_repo: <%= ENV['COMMON_ARTIFACT_REPO'] %>
   - name: weblogic-server-12-1-1
     run_list:
-      - recipe[weblogic-server-12_1_1]
+      - recipe[weblogic-server-12-1-1]
     attributes:
           common_artifact_repo: <%= ENV['COMMON_ARTIFACT_REPO'] %>
   - name: weblogic-server-12-1-2
     run_list:
-      - recipe[weblogic-server-12_1_2]
+      - recipe[weblogic-server-12-1-2]
     attributes:
           common_artifact_repo: <%= ENV['COMMON_ARTIFACT_REPO'] %>
   - name: weblogic-server-12-1-3
     run_list:
-      - recipe[weblogic-server-12_1_3]
+      - recipe[weblogic-server-12-1-3]
     attributes:
           common_artifact_repo: <%= ENV['COMMON_ARTIFACT_REPO'] %>
   - name: weblogic-server-multi

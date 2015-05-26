@@ -1,4 +1,4 @@
-name 'weblogic-server-12_1_2'
+name 'weblogic-server-12-1-2'
 version '0.0.1'
 
 depends 'weblogic'

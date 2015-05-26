@@ -133,7 +133,7 @@ Chef.resource 'weblogic' do
       owner owner
       group groupname
       source silent_file + '.erb'
-      cookbook 'fusionmiddleware'
+      cookbook 'weblogic'
       variables(home: home)
     end
 
