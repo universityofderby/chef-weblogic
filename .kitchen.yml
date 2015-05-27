@@ -2,11 +2,14 @@ driver:
   name: vagrant
   driver-config:
     use_cachier_plugin: true
+
 provisioner:
   name: chef_zero
+  data_path: test/shared
 
 platforms:
   - name: centos-6.6
+
 suites:
   - name: weblogic-server-10-3-6
     run_list:

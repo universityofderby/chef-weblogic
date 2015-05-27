@@ -1,6 +1,4 @@
-require 'serverspec'
-
-set :backend, :exec
+require_relative '../../../kitchen/data/spec_helper'
 
 describe user('oracle') do
   it { should exist }
