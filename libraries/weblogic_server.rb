@@ -47,6 +47,19 @@ Chef.resource 'weblogic' do
       end
     end
   end
+  property :component_paths, String do
+    default do
+      v = Gem::Version.new(version)
+      v1211 = Gem::Version.new('12.1.1')
+      v1212 = Gem::Version.new('12.1.2')
+      case
+      when v >= v1211 && v < v1212
+        'WebLogic Server/Core Application Server|WebLogic Server/Administration Console|WebLogic Server/Configuration Wizard and Upgrade Framework|WebLogic Server/Web 2.0 HTTP Pub-Sub Server|WebLogic Server/WebLogic JDBC Drivers|WebLogic Server/Third Party JDBC Drivers|WebLogic Server/WebLogic Server Clients|WebLogic Server/Xquery Support|WebLogic Server/Server Examples'
+      else
+        'WebLogic Server/Core Application Server|WebLogic Server/Administration Console|WebLogic Server/Configuration Wizard and Upgrade Framework|WebLogic Server/Web 2.0 HTTP Pub-Sub Server|WebLogic Server/WebLogic JDBC Drivers|WebLogic Server/Third Party JDBC Drivers|WebLogic Server/WebLogic Server Clients|WebLogic Server/WebLogic Web Server Plugins|WebLogic Server/UDDI and Xquery Support|WebLogic Server/Server Examples'
+      end
+    end
+  end
   property :installer_url, String do
     default { node['common_artifact_repo'] + "/oracle/weblogic-server/#{version}/#{installer_file}" }
   end
@@ -54,7 +67,23 @@ Chef.resource 'weblogic' do
     default {  ::File.join(cache_path, installer_file) }
   end
   property :installer_file, Path do
-    default { 'wls1036_generic.jar' }
+    default do
+      v = Gem::Version.new(version)
+      v1036 = Gem::Version.new('10.3.6')
+      v1211 = Gem::Version.new('12.1.1')
+      v1212 = Gem::Version.new('12.1.2')
+      v1213 = Gem::Version.new('12.1.3')
+      case
+      when v >= v1036 && v < v1211
+        'wls1036_generic.jar'
+      when v >= v1211 && v < v1212
+        'wls1211_generic.jar'
+      when v >= v1212 && v < v1213
+        'wls_121200.jar'
+      else
+        'fmw_12.1.3.0.0_wls.jar'
+      end
+    end
   end
   property :ownername, String do
     default { 'oracle' }
@@ -77,13 +106,13 @@ Chef.resource 'weblogic' do
     node.default['java']['oracle']['accept_oracle_download_terms'] = true
     include_recipe 'java'
 
-    # if Gem::Version.new(version) >= Gem::Version.new('12.1.3.0.0')
-    #  include_recipe 'oracle-inventory'
-    #  group node['oracle']['inventory']['group'] do
-    #    append true
-    #    members ownername
-    #  end
-    # end
+    if Gem::Version.new(version) >= Gem::Version.new('12.1.2.0.0')
+      include_recipe 'oracle-inventory'
+      group node['oracle']['inventory']['group'] do
+        append true
+        members ownername
+      end
+    end
 
     group groupname
 
@@ -117,8 +146,11 @@ Chef.resource 'weblogic' do
       owner owner
       group groupname
       source silent_file + '.erb'
-      cookbook 'fusionmiddleware'
-      variables(home: home)
+      cookbook 'weblogic'
+      variables(
+        home: home,
+        component_paths: component_paths
+      )
     end
 
     execute "install weblogic server #{version}" do

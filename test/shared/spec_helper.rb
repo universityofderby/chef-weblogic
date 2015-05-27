@@ -1,9 +1,9 @@
 require 'serverspec'
-# Required by serverspec
+
 set :backend, :exec
 
 RSpec.configure do |c|
   c.before :all do
-    c.path = '/sbin:/usr/sbin:/bin'
+    c.path = '$PATH:/sbin:/usr/sbin:/usr/local/sbin:/bin'
   end
 end
