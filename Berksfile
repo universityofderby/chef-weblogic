@@ -1,4 +1,4 @@
-source 'http://supermarket.getchef.io'
+source 'https://supermarket.chef.io'
 
 metadata
 cookbook 'weblogic-server-10-3-6', path: 'test/fixtures/cookbooks/weblogic-server/10-3-6'
