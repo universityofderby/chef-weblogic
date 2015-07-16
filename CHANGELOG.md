@@ -1,5 +1,8 @@
 weblogic Cookbook CHANGELOG
 ========================
+v2.0.2 (2015-07-16)
+Fix Berkshelf to point to the new supermarket universe endpoint (@smford22)
+
 v2.0.1 (2015-05-27)
 Fixed issue #3: removed reference to old cookbook name.  Weblogic 12.1.1/12.1.2 tests working.
 
