@@ -105,16 +105,19 @@ Chef.resource 'weblogic' do
 
     group groupname
 
+    user ownername do
+      gid groupname
+    end
+
+    node.default['oracle']['inventory']['group'] = groupname
+    node.default['oracle']['inventory']['user'] = ownername
+
     if Gem::Version.new(version) >= Gem::Version.new('12.1.2.0.0')
       include_recipe 'oracle-inventory'
       group node['oracle']['inventory']['group'] do
         append true
         members ownername
       end
-    end
-
-    user ownername do
-      gid groupname
     end
 
     directory cache_path do
