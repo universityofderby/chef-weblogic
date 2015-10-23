@@ -16,9 +16,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-# Interface for this should look like:
-# weblogic '12.1.2.0.0'
-#
 Chef.resource 'weblogic' do
   include Chef::DSL::IncludeRecipe
 
@@ -106,18 +103,21 @@ Chef.resource 'weblogic' do
     node.default['java']['oracle']['accept_oracle_download_terms'] = true
     include_recipe 'java'
 
+    group groupname
+
+    user ownername do
+      gid groupname
+    end
+
+    node.default['oracle']['inventory']['group'] = groupname
+    node.default['oracle']['inventory']['user'] = ownername
+
     if Gem::Version.new(version) >= Gem::Version.new('12.1.2.0.0')
       include_recipe 'oracle-inventory'
       group node['oracle']['inventory']['group'] do
         append true
         members ownername
       end
-    end
-
-    group groupname
-
-    user ownername do
-      gid groupname
     end
 
     directory cache_path do
