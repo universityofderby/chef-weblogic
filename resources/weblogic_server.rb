@@ -80,18 +80,10 @@ property :installer_file, Path do
     end
   end
 end
-property :ownername, String do
-  default { 'oracle' }
-end
-property :groupname, String do
-  default { 'dba' }
-end
-property :home, Path do
-  default { "/opt/oracle/Middleware/weblogic-#{version}" }
-end
-property :oracle_jdk, String do
-  default { 7 }
-end
+property :ownername, String, default: 'oracle'
+property :groupname, String, default: 'dba'
+property :home, Path, default: "/opt/oracle/Middleware/weblogic-#{version}"
+property :oracle_jdk, String, default: '7'
 property :inventory_path, Path do
   default { ::File.join(home, 'oraInventory') }
 end
