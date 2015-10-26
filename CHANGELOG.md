@@ -1,5 +1,8 @@
 weblogic Cookbook CHANGELOG
 ========================
+v2.0.3 (2015-10-26)
+Fix issue #6 Mismatch in username and group. 
+
 v2.0.2 (2015-07-16)
 Fix Berkshelf to point to the new supermarket universe endpoint (@smford22)
 
