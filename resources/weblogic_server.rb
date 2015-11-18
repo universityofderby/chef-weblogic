@@ -18,15 +18,15 @@
 #
 
 property :version, String, name_property: true
-property :cache_path, String, default: ::File.join(Chef::Config[:file_cache_path], "weblogic-#{version}")
-property :silent_path, String, default { ::File.join(cache_path, silent_file) }
-property :silent_file, String, default {
-  if Gem::Version.new(version) < Gem::Version.new('12.1.2.0.0')
+property :cache_path, String, default: ::File.join(Chef::Config[:file_cache_path], "weblogic-#{@version}")
+property :silent_file, String, default:
+  if Gem::Version.new(@version) < Gem::Version.new('12.1.2.0.0')
     'silent.xml'
   else
     'silent.rsp'
   end
-}
+property :silent_path, String, default: ::File.join(@cache_path, @silent_file)
+
 property :silent_cmd, String, default{
   if Gem::Version.new(version) < Gem::Version.new('12.1.2.0.0')
     '-mode=silent -silent_xml='
