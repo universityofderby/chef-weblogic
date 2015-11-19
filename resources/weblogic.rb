@@ -18,25 +18,25 @@
 #
 resource_name :weblogic
 property :version, String, name_property: true
-property :cache_path, String, default: lazy {::File.join(Chef::Config[:file_cache_path], "weblogic-#{version}")}
-property :silent_file, String, default: lazy {
+property :cache_path, String, default: lazy { ::File.join(Chef::Config[:file_cache_path], "weblogic-#{version}") }
+property :silent_file, String, default: lazy do
   if Gem::Version.new(@version) < Gem::Version.new('12.1.2.0.0')
     'silent.xml'
   else
     'silent.rsp'
   end
-}
-property :silent_path, String, default: lazy{ ::File.join(cache_path, silent_file)}
+end
+property :silent_path, String, default: lazy { ::File.join(cache_path, silent_file) }
 
-property :silent_cmd, String, default: lazy{
+property :silent_cmd, String, default: lazy do
   if Gem::Version.new(version) < Gem::Version.new('12.1.2.0.0')
     '-mode=silent -silent_xml='
   else
     '-silent -responseFile '
   end
-}
+end
 
-property :component_paths, String, default: lazy{
+property :component_paths, String, default: lazy do
   v = Gem::Version.new(version)
   v1211 = Gem::Version.new('12.1.1')
   v1212 = Gem::Version.new('12.1.2')
@@ -46,13 +46,13 @@ property :component_paths, String, default: lazy{
   else
     'WebLogic Server/Core Application Server|WebLogic Server/Administration Console|WebLogic Server/Configuration Wizard and Upgrade Framework|WebLogic Server/Web 2.0 HTTP Pub-Sub Server|WebLogic Server/WebLogic JDBC Drivers|WebLogic Server/Third Party JDBC Drivers|WebLogic Server/WebLogic Server Clients|WebLogic Server/WebLogic Web Server Plugins|WebLogic Server/UDDI and Xquery Support|WebLogic Server/Server Examples'
   end
-}
-property :installer_url, String, default: lazy {
+end
+property :installer_url, String, default: lazy do
   node['common_artifact_repo'] +
     "/oracle/weblogic-server/#{version}/#{installer_file}"
-}
-property :installer_path, String, default: lazy{ ::File.join(cache_path, installer_file)}
-property :installer_file, String, default: lazy{
+end
+property :installer_path, String, default: lazy { ::File.join(cache_path, installer_file) }
+property :installer_file, String, default: lazy do
   v = Gem::Version.new(version)
   v1036 = Gem::Version.new('10.3.6')
   v1211 = Gem::Version.new('12.1.1')
@@ -68,13 +68,12 @@ property :installer_file, String, default: lazy{
   else
     'fmw_12.1.3.0.0_wls.jar'
   end
-}
-
+end
 property :ownername, String, default: 'oracle'
 property :groupname, String, default: 'dba'
-property :home, String, default: lazy{ "/opt/oracle/Middleware/weblogic-#{version}"}
+property :home, String, default: lazy { "/opt/oracle/Middleware/weblogic-#{version}" }
 property :oracle_jdk, String, default: '7'
-property :inventory_path, String, default: lazy{::File.join(home, 'oraInventory')}
+property :inventory_path, String, default: lazy { ::File.join(home, 'oraInventory') }
 
 action :create do
   node.default['java']['jdk_version'] = oracle_jdk
