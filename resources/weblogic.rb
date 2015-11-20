@@ -19,24 +19,24 @@
 resource_name :weblogic
 property :version, String, name_property: true
 property :cache_path, String, default: lazy { ::File.join(Chef::Config[:file_cache_path], "weblogic-#{version}") }
-property :silent_file, String, default: lazy do
+property :silent_file, String, default: lazy {
   if Gem::Version.new(@version) < Gem::Version.new('12.1.2.0.0')
     'silent.xml'
   else
     'silent.rsp'
   end
-end
+}
 property :silent_path, String, default: lazy { ::File.join(cache_path, silent_file) }
 
-property :silent_cmd, String, default: lazy do
+property :silent_cmd, String, default: lazy {
   if Gem::Version.new(version) < Gem::Version.new('12.1.2.0.0')
     '-mode=silent -silent_xml='
   else
     '-silent -responseFile '
   end
-end
+}
 
-property :component_paths, String, default: lazy do
+property :component_paths, String, default: lazy {
   v = Gem::Version.new(version)
   v1211 = Gem::Version.new('12.1.1')
   v1212 = Gem::Version.new('12.1.2')
@@ -46,13 +46,13 @@ property :component_paths, String, default: lazy do
   else
     'WebLogic Server/Core Application Server|WebLogic Server/Administration Console|WebLogic Server/Configuration Wizard and Upgrade Framework|WebLogic Server/Web 2.0 HTTP Pub-Sub Server|WebLogic Server/WebLogic JDBC Drivers|WebLogic Server/Third Party JDBC Drivers|WebLogic Server/WebLogic Server Clients|WebLogic Server/WebLogic Web Server Plugins|WebLogic Server/UDDI and Xquery Support|WebLogic Server/Server Examples'
   end
-end
-property :installer_url, String, default: lazy do
+}
+property :installer_url, String, default: lazy {
   node['common_artifact_repo'] +
     "/oracle/weblogic-server/#{version}/#{installer_file}"
-end
+}
 property :installer_path, String, default: lazy { ::File.join(cache_path, installer_file) }
-property :installer_file, String, default: lazy do
+property :installer_file, String, default: lazy {
   v = Gem::Version.new(version)
   v1036 = Gem::Version.new('10.3.6')
   v1211 = Gem::Version.new('12.1.1')
@@ -68,7 +68,8 @@ property :installer_file, String, default: lazy do
   else
     'fmw_12.1.3.0.0_wls.jar'
   end
-end
+}
+
 property :ownername, String, default: 'oracle'
 property :groupname, String, default: 'dba'
 property :home, String, default: lazy { "/opt/oracle/Middleware/weblogic-#{version}" }
