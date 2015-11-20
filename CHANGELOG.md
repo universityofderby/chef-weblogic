@@ -1,6 +1,6 @@
 weblogic Cookbook CHANGELOG
 ========================
-v2.0.3 (2015-tbc)
+v2.1.0 (2015-11-20)
 Move to custom resources
 
 v2.0.2 (2015-07-16)
