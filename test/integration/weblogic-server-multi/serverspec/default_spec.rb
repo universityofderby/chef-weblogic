@@ -15,12 +15,6 @@ describe file('/opt/oracle/Middleware/weblogic-10.3.6/wlserver') do
   it { should be_grouped_into 'dba' }
 end
 
-describe file('/opt/oracle/Middleware/weblogic-12.1.1.0.0/wlserver') do
-  it { should be_directory }
-  it { should be_owned_by 'oracle' }
-  it { should be_grouped_into 'dba' }
-end
-
 describe file('/opt/oracle/Middleware/weblogic-12.1.2.0.0/wlserver') do
   it { should be_directory }
   it { should be_owned_by 'oracle' }

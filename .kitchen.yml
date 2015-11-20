@@ -16,11 +16,6 @@ suites:
       - recipe[weblogic-server-10-3-6]
     attributes:
           common_artifact_repo: <%= ENV['COMMON_ARTIFACT_REPO'] %>
-  - name: weblogic-server-12-1-1
-    run_list:
-      - recipe[weblogic-server-12-1-1]
-    attributes:
-          common_artifact_repo: <%= ENV['COMMON_ARTIFACT_REPO'] %>
   - name: weblogic-server-12-1-2
     run_list:
       - recipe[weblogic-server-12-1-2]
