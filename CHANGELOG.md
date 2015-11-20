@@ -1,5 +1,8 @@
 weblogic Cookbook CHANGELOG
 ========================
+v2.0.3 (2015-tbc)
+Move to custom resources
+
 v2.0.2 (2015-07-16)
 Fix Berkshelf to point to the new supermarket universe endpoint (@smford22)
 
