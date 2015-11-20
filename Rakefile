@@ -1,4 +1,5 @@
 require 'bundler/setup'
+require 'stove/rake_task'
 
 namespace :style do
   require 'rubocop/rake_task'
@@ -40,3 +41,5 @@ end
 
 # The default rake task should just run it all
 task default: %w(style)
+
+Stove::RakeTask.new
