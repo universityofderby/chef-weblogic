@@ -1,5 +1,8 @@
 weblogic Cookbook CHANGELOG
 ========================
+v2.1.2 (2015-12-15)
+Add weblogic 12.2.1
+
 v2.1.0 (2015-11-20)
 Deprecate v2.1.1 as per issue #10
 
