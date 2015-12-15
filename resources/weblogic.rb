@@ -58,6 +58,9 @@ property :installer_file, String, default: lazy {
   v1211 = Gem::Version.new('12.1.1')
   v1212 = Gem::Version.new('12.1.2')
   v1213 = Gem::Version.new('12.1.3')
+  v1221 = Gem::Version.new('12.2.1')
+  v1222 = Gem::Version.new('12.2.2')
+
   case
   when v >= v1036 && v < v1211
     'wls1036_generic.jar'
@@ -65,8 +68,12 @@ property :installer_file, String, default: lazy {
     'wls1211_generic.jar'
   when v >= v1212 && v < v1213
     'wls_121200.jar'
-  else
+  when v >= v1213 && v < v1221
     'fmw_12.1.3.0.0_wls.jar'
+  when v >= v1221 && v < v1222
+    'fmw_12.2.1.0.0_wls.jar'
+  else
+    ''
   end
 }
 
