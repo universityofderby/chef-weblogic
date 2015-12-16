@@ -17,6 +17,7 @@
 # limitations under the License.
 #
 resource_name :weblogic
+default_action :create
 property :version, String, name_property: true
 property :cache_path, String, default: lazy { ::File.join(Chef::Config[:file_cache_path], "weblogic-#{version}") }
 property :silent_file, String, default: lazy {
