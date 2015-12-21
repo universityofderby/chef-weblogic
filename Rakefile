@@ -1,5 +1,4 @@
 require 'bundler/setup'
-require 'stove/rake_task'
 
 namespace :style do
   require 'rubocop/rake_task'
