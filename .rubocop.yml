@@ -9,3 +9,5 @@ LineLength:
   Enabled: false
 RescueModifier:
   Enabled: false
+Style/BlockDelimiters:
+  Enabled: false
