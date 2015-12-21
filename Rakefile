@@ -24,22 +24,5 @@ RSpec::Core::RakeTask.new(:unit) do |t|
   t.rspec_opts = '--color --format documentation'
 end
 
-# require 'kitchen'
-# desc 'Run Test Kitchen integration tests'
-# task :integration do
-#  Kitchen.logger = Kitchen.default_file_logger
-#  Kitchen::Config.new.instances.each do |instance|
-#    instance.test(:always)
-#  end
-# end
-
-# We cannot run Test Kitchen on Jenkins yet...
-namespace :jenkins do
-  desc 'Run tests on Jenkins'
-  task ci: %w(style)
-end
-
 # The default rake task should just run it all
 task default: %w(style)
-
-Stove::RakeTask.new
