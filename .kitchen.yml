@@ -8,9 +8,14 @@ provisioner:
   data_path: test/shared
 
 platforms:
-  - name: centos-6.6
+  - name: centos-6.7
 
 suites:
+  - name: weblogic-server-10-3-5
+    run_list:
+      - recipe[weblogic-server-10-3-5]
+    attributes:
+      common_artifact_repo: <%= ENV['COMMON_ARTIFACT_REPO'] %>
   - name: weblogic-server-10-3-6
     run_list:
       - recipe[weblogic-server-10-3-6]
