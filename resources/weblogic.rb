@@ -48,12 +48,12 @@ property :component_paths, String, default: lazy {
   end
 }
 property :installer_url, String, default: lazy {
-  node['common_artifact_repo'] +
-    "/oracle/weblogic-server/#{version}/#{installer_file}"
+  node['common_artifact_repo'] + "/oracle/weblogic-server/#{version}/#{installer_file}"
 }
 property :installer_path, String, default: lazy { ::File.join(cache_path, installer_file) }
 property :installer_file, String, default: lazy {
   v = Gem::Version.new(version)
+  v1035 = Gem::Version.new('10.3.5')
   v1036 = Gem::Version.new('10.3.6')
   v1211 = Gem::Version.new('12.1.1')
   v1212 = Gem::Version.new('12.1.2')
@@ -62,6 +62,8 @@ property :installer_file, String, default: lazy {
   v1222 = Gem::Version.new('12.2.2')
 
   case
+  when v >= v1035 && v < v1036
+    'wls1035_generic.jar'
   when v >= v1036 && v < v1211
     'wls1036_generic.jar'
   when v >= v1211 && v < v1212
