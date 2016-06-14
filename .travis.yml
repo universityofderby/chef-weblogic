@@ -1,7 +1,16 @@
-sudo: false
 language: ruby
 bundler_args: --without integration
 rvm:
-  - 2.0
-  - 2.1
-script: bundle exec rake style
+  - 2.1.8p440
+script:
+  - bundle exec rake style
+  - bundle exec rake kitchen:weblogic-server-$TEST_SUITE-centos-67
+env:
+  - KITCHEN_YAML=.kitchen.travis.yml TEST_VERSION=10-3-5
+  - KITCHEN_YAML=.kitchen.travis.yml TEST_VERSION=10-3-6
+  - KITCHEN_YAML=.kitchen.travis.yml TEST_VERSION=12-1-2
+  - KITCHEN_YAML=.kitchen.travis.yml TEST_VERSION=12-1-3
+  - KITCHEN_YAML=.kitchen.travis.yml TEST_VERSION=12-2-1
+  - KITCHEN_YAML=.kitchen.travis.yml TEST_VERSION=multi
+  - KITCHEN_YAML=.kitchen.travis.yml TEST_VERSION=usr
+  - KITCHEN_YAML=.kitchen.travis.yml TEST_VERSION=2-1-3-weblogic-admin
