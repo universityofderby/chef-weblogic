@@ -43,4 +43,3 @@ namespace :maintain do
   require 'stove/rake_task'
   Stove::RakeTask.new
 end
-
