@@ -1,5 +1,8 @@
 weblogic Cookbook CHANGELOG
 ========================
+v2.1.4
+Fix silent file owner #17
+
 v2.1.3
 Add weblogic 10.3.5
 Changes teste CentOS version to 6.7
