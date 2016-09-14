@@ -132,7 +132,7 @@ action :create do
 
   template silent_path do
     mode 00644
-    owner owner
+    owner ownername
     group groupname
     source silent_file + '.erb'
     cookbook 'weblogic'
