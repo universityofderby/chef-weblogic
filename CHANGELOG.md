@@ -1,5 +1,8 @@
 weblogic Cookbook CHANGELOG
 ========================
+v2.1.5
+Fix group membership #19
+
 v2.1.4
 Fix silent file owner #17
 
