@@ -92,7 +92,9 @@ action :create do
   node.default['java']['oracle']['accept_oracle_download_terms'] = true
   include_recipe 'java'
 
-  group groupname
+  group groupname do
+    append true
+  end
 
   user ownername do
     gid groupname
